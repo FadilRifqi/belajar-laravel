@@ -2,14 +2,12 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class Role extends Model
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -18,8 +16,6 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'role_id',
-        'password',
     ];
 
     /**
@@ -28,8 +24,6 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
-        'remember_token',
         'created_at',
         'updated_at',
     ];
@@ -47,13 +41,8 @@ class User extends Authenticatable
         ];
     }
 
-    public function role()
+    public function users()
     {
-        return $this->hasOne(Role::class, 'id', 'role_id');
-    }
-
-    public function presensi()
-    {
-        return $this->hasMany(PresensiPegawai::class, 'pegawai_id', 'id');
+        return $this->belongsTo(User::class, 'role_id', 'id');
     }
 }
