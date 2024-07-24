@@ -1,0 +1,18 @@
+@media (min-width: 576px) {
+    /* Bootstrap's 'sm' breakpoint */
+    .btn-responsive {
+        width: 50% !important;
+    }
+    .status-responsive {
+        width: 50% !important;
+    }
+}
+@media (max-width: 575.98px) {
+    /* Below Bootstrap's 'sm' breakpoint */
+    .btn-responsive {
+        width: 100% !important;
+    }
+    .status-responsive {
+        width: 100% !important;
+    }
+}

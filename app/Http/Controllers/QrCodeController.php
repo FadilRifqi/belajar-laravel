@@ -35,11 +35,11 @@ class QrCodeController extends Controller
         }
 
         $qr_code_image = QrCode::size(300)
-            ->color(0, 0, 139)
-            ->backgroundColor(255, 179, 71)
+            ->color(50, 50, 50) // Dark gray
+            ->backgroundColor(220, 220, 220) // Light gray
             ->generate($qr_code->token);
         $qr_code_base64 = 'data:image/svg+xml;base64,' . base64_encode($qr_code_image);
-        return view('admin.generate.app', compact('qr_code_base64'));
+        return view('admin.generate.app', compact('qr_code_base64', 'qr_code'));
     }
 
     public function store(Request $request, $token)

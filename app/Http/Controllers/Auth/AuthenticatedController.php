@@ -15,26 +15,28 @@ class AuthenticatedController extends Controller
 
     public function store(Request $request)
     {
-        $credentials = $request->validate(
-            [
-                'name' => 'required',
-                'password' => 'required',
-            ]
-        );
+        try {
+            $credentials = $request->validate(
+                [
+                    'name' => 'required',
+                    'password' => 'required',
+                ]
+            );
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+            if (Auth::attempt($credentials)) {
+                $request->session()->regenerate();
 
-            if (auth()->user()->role->name === 'Admin') {
-                return redirect()->route('admin');
-            } elseif (auth()->user()->role->name === 'Pegawai') {
-                return redirect()->route('pegawai');
+                if (auth()->user()->role->name === 'Admin') {
+                    return redirect()->route('admin');
+                } elseif (auth()->user()->role->name === 'Pegawai') {
+                    return redirect()->route('pegawai');
+                }
             }
-        }
 
-        return back()->withErrors([
-            'message' => 'Login Failed',
-        ]);
+            return back()->with('error', 'Invalid credentials');
+        } catch (\Throwable $th) {
+            return back()->with('error', $th->getMessage());
+        }
     }
 
     public function destroy(Request $request)

@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->id()->index();
             $table->foreignId('role_id');
             $table->string('name')->unique();
+            $table->string('divisi')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

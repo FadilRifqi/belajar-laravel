@@ -1,0 +1,30 @@
+.content {
+    margin-left: 254px; /* Adjusted margin */
+    padding: 20px;
+    height: 100%;
+}
+
+.expanded {
+    margin-left: 29px; /* Adjusted margin for collapsed sidebar */
+}
+
+.sidebar-collapsed {
+    width: 25px; /* Adjusted sidebar width when collapsed */
+}
+
+/* .app-container {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch; 
+    justify-content: center; 
+} */
+
+.sidebar {
+    /* Assuming you want the sidebar to have a fixed width when visible */
+    flex-shrink: 0; /* Prevents the sidebar from shrinking */
+}
+
+.content {
+    flex-grow: 1; /* Allows the content to fill the available space */
+    margin: 0 auto; /* Centers the content block */
+}

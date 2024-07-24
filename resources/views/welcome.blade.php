@@ -13,6 +13,12 @@
 		<div class="container">
 			<div class="row justify-content-center mt-5">
 				<div class="col-md-6">
+					<!-- Display Error Message -->
+					@if (session("error"))
+						<div class="alert alert-danger" role="alert">
+							{{ session("error") }}
+						</div>
+					@endif
 					<div class="card">
 						<div class="card-header text-center">
 							<h4>Login</h4>
