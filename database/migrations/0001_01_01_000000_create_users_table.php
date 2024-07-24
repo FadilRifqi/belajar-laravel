@@ -12,9 +12,10 @@ return new class extends Migration {
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id()->index();
-            $table->foreignId('role_id');
+            $table->foreignId('role_id')->default(2);
+            $table->foreignId('divisi_id')->nullable();
+            $table->string('nip')->unique();
             $table->string('name')->unique();
-            $table->string('divisi')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

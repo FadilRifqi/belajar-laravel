@@ -15,16 +15,6 @@ class QrCodeController extends Controller
     public function create()
     {
         $pegawai = User::where('role_id', 2)->get();
-        foreach ($pegawai as $p) {
-            $presensi = $p->presensi->where('tanggal_presensi', now()->toDateString())->first();
-            if (!$presensi) {
-                PresensiPegawai::create([
-                    'pegawai_id' => $p->id,
-                    'tanggal_presensi' => now(),
-                    'presensi' => false,
-                ]);
-            }
-        }
         $qr_code = PresensiQr::where('tanggal_presensi', now()->toDateString())->first();
         if (!$qr_code || $qr_code->expired_at->isPast()) {
             $qr_code = PresensiQr::create([
@@ -33,7 +23,17 @@ class QrCodeController extends Controller
                 'expired_at' => Carbon::tomorrow()->startOfDay(),
             ]);
         }
-
+        foreach ($pegawai as $p) {
+            $presensi = $p->presensi->where('tanggal_presensi', now()->toDateString())->first();
+            if (!$presensi) {
+                PresensiPegawai::create([
+                    'pegawai_id' => $p->id,
+                    'qr_code_id' => $qr_code->id,
+                    'tanggal_presensi' => now(),
+                    'presensi' => false,
+                ]);
+            }
+        }
         $qr_code_image = QrCode::size(300)
             ->color(50, 50, 50) // Dark gray
             ->backgroundColor(220, 220, 220) // Light gray

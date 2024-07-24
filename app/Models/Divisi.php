@@ -5,20 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PresensiPegawai extends Model
+class Divisi extends Model
 {
     use HasFactory;
-    protected $table = 'presensi_pegawai';
+    protected $table = 'divisi';
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'pegawai_id',
-        'tanggal_presensi',
-        'qr_code_id',
-        'presensi',
+        'nama',
+        'kode',
+        'ruangan'
     ];
 
     /**
@@ -42,9 +41,9 @@ class PresensiPegawai extends Model
 
         ];
     }
-    public function pegawai()
-    {
-        return $this->belongsTo(User::class, 'pegawai_id', 'id');
-    }
 
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'role_id', 'id');
+    }
 }

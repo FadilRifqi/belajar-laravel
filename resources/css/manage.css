@@ -16,3 +16,29 @@
         width: 100% !important;
     }
 }
+
+.dark-theme .pagination {
+    background-color: #333; /* Dark background */
+    color: #fff; /* Light text */
+}
+
+.dark-theme .pagination .page-link {
+    color: #fff; /* Light text */
+    background-color: #555; /* Darker background for links */
+    border-color: #666; /* Dark border color */
+}
+
+.dark-theme .pagination .page-item.active .page-link {
+    background-color: #007bff; /* Bootstrap primary color, or choose your own */
+    border-color: #007bff;
+}
+
+.dark-theme .pagination .page-item.disabled .page-link {
+    color: #999; /* Lighter text for disabled links */
+}
+
+.dark-theme .pagination .page-item.active .page-link {
+    color: #000;
+    background-color: #f8f9fa !important; /* Very light gray */
+    border-color: #f8f9fa !important; /* Ensure the border color matches */
+}

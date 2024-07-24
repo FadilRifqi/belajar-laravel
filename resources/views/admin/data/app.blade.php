@@ -6,7 +6,7 @@
 	@vite("resources/css/manage.css")
 @endsection
 
-@section("page", "Manage Presensi")
+@section("page", "Manage Pegawai")
 
 @section("head")
 	@vite("resources/css/manage.css")
@@ -15,10 +15,9 @@
 @section("content")
 	<div class="container mt-5">
 		<!-- Export Button -->
-		<form action="{{ route("export") }}" method="POST" class="mb-3">
-			@csrf <!-- CSRF token for security -->
-			<button type="submit" class="btn btn-dark text-white">Download Data</button>
-		</form>
+		<button type="button" class="btn btn-dark text-white mb-1 ml-1" data-toggle="modal" data-target="#uploadExcelModal">Upload
+			Data
+		</button>
 		<!-- Success Message -->
 		@if (session("success"))
 			<div class="alert alert-success" role="alert">
@@ -35,7 +34,7 @@
 
 		<div class="table-responsive">
 			<!-- Search Form -->
-			<form action="{{ route("manage-presensi.search") }}" method="POST" class="mb-3">
+			<form action="{{ route("manage-pegawai.search") }}" method="POST" class="mb-3">
 				@csrf
 				<div class="input-group">
 					<input type="text" class="form-control" name="search" placeholder="Search by name or divisi"
@@ -73,23 +72,16 @@
 							</td>
 							<td style="width: 25% !important">
 								<div class="d-flex gap-1 justify-content-center flex-column flex-sm-row">
-									<form class="btn-responsive px-1" action="{{ route("presensi.hadir", ["pegawai_id" => $p->id]) }}"
-										method="POST">
+									<form class="btn-responsive px-1" action="{{ route("data.edit", ["pegawai_id" => $p->id]) }}" method="GET">
 										@csrf
-										@method("PATCH")
-										<button type="submit" style="width: 100%"
-											{{ $p->presensi->where("tanggal_presensi", now()->toDateString())->first() != null ? ($p->presensi->where("tanggal_presensi", now()->toDateString())->first()->presensi == true ? "disabled" : "") : "disabled" }}
-											class="btn btn-info btn-sm mb-2 mb-sm-0 mr-sm-2">Hadir
+										<button type="submit" style="width: 100%" class="btn btn-info btn-sm mb-2 mb-sm-0 mr-sm-2">Edit
 										</button>
 									</form>
 
-									<form class="btn-responsive px-1" action="{{ route("presensi.hapus", ["pegawai_id" => $p->id]) }}"
-										method="POST">
+									<form class="btn-responsive px-1" action="{{ route("data.hapus", ["pegawai_id" => $p->id]) }}" method="POST">
 										@csrf
-										@method("PATCH")
-										<button type="submit" style="width: 100%"
-											{{ $p->presensi->where("tanggal_presensi", now()->toDateString())->first() != null ? ($p->presensi->where("tanggal_presensi", now()->toDateString())->first()->presensi == false ? "disabled" : "") : "disabled" }}
-											class="btn btn-danger btn-sm mb-2 mb-sm-0 mr-sm-2">
+										@method("DELETE")
+										<button type="submit" style="width: 100%" class="btn btn-danger btn-sm mb-2 mb-sm-0 mr-sm-2">
 											Hapus
 										</button>
 									</form>
@@ -106,5 +98,6 @@
 		<div class="d-flex justify-content-center">
 			{{ $pegawai->links() }}
 		</div>
+		@include("admin.data.upload")
 	</div>
 @endsection

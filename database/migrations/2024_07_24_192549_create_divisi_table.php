@@ -10,12 +10,11 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('presensi_pegawai', function (Blueprint $table) {
+        Schema::create('divisi', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pegawai_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('qr_code_id')->constrained('presensi_qr')->onDelete('cascade');
-            $table->date('tanggal_presensi');
-            $table->boolean('presensi');
+            $table->string('nama');
+            $table->string('kode');
+            $table->string('ruangan');
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('presensi_pegawai');
+        Schema::dropIfExists('divisi');
     }
 };

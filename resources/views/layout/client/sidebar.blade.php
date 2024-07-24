@@ -49,9 +49,21 @@
 				<li class="nav-item menu-open">
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="{{ route("manage") }}" class="nav-link {{ Route::currentRouteName() == "manage" ? "active" : "" }}">
+							<a href="{{ route("manage-presensi") }}"
+								class="nav-link {{ Route::currentRouteName() == "manage-presensi" || Route::currentRouteName() == "manage-presensi.search" ? "active" : "" }}">
 								<i class="far fa-address-card nav-icon"></i>
 								<p>Manage Presensi</p>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item menu-open">
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a href="{{ route("manage-pegawai") }}"
+								class="nav-link {{ Route::currentRouteName() == "manage-pegawai" || Route::currentRouteName() == "data.edit" || Route::currentRouteName() == "manage-pegawai.search" ? "active" : "" }}">
+								<i class="fa fa-users nav-icon"></i>
+								<p>Manage Pegawai</p>
 							</a>
 						</li>
 					</ul>

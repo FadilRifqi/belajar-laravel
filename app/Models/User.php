@@ -19,8 +19,9 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'role_id',
+        'nip',
         'password',
-        'divisi',
+        'divisi_id',
     ];
 
     /**
@@ -56,5 +57,9 @@ class User extends Authenticatable
     public function presensi()
     {
         return $this->hasMany(PresensiPegawai::class, 'pegawai_id', 'id');
+    }
+    public function divisi()
+    {
+        return $this->hasOne(Divisi::class, 'id', 'divisi_id');
     }
 }

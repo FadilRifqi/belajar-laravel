@@ -49,7 +49,7 @@
 				<a href="index3.html" class="brand-link">
 					<img src="{{ asset("assets/dist/img/AdminLTELogo.png") }}" alt="AdminLTE Logo"
 						class="brand-image img-circle elevation-3" style="opacity: .8">
-					<span class="brand-text font-weight-light">{{ auth()->user()->divisi }}</span>
+					<span class="brand-text font-weight-light">{{ auth()->user()->divisi->nama }}</span>
 				</a>
 
 				<!-- Sidebar -->
@@ -78,7 +78,7 @@
 				<!-- /.content-header -->
 
 				<!-- Main content -->
-				<section class="content">
+				<section class="content pb-3">
 					<div class="container-fluid">
 						@yield("content")
 					</div>
