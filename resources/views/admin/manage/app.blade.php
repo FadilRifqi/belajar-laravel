@@ -8,10 +8,6 @@
 
 @section("page", "Manage Presensi")
 
-@section("head")
-	@vite("resources/css/manage.css")
-@endsection
-
 @section("content")
 	<div class="container mt-5">
 		<!-- Export Button -->

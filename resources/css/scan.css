@@ -1,0 +1,59 @@
+#reader {
+    position: relative;
+    width: 100%;
+    /* Default for desktop */
+    padding-top: 40%; /* Adjust for desktop aspect ratio or size as needed */
+}
+
+#reader > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+/* Tablets */
+@media (min-width: 768px) and (max-width: 991px) {
+    #reader {
+        padding-top: 50%; /* Adjust the aspect ratio or size for tablets */
+    }
+}
+
+/* Mobile devices */
+@media (max-width: 767px) {
+    #reader {
+        padding-top: 56.25%; /* 16:9 Aspect Ratio for mobile */
+    }
+}
+
+#html5-qrcode-button-camera-start {
+    position: absolute; /* Changed from absolute to fixed */
+    bottom: 0; /* Adjust so it doesn't overlap with the start button */
+    left: 50%;
+    transform: translateX(-50%); /* Adjust for centering */
+    width: auto; /* Adjust width as needed */
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    z-index: 1000; /* Ensure it's above other content */
+}
+
+#html5-qrcode-button-camera-stop {
+    position: absolute; /* Changed from absolute to fixed */
+    bottom: 0; /* Adjust so it doesn't overlap with the start button */
+    left: 50%; /* Center the button */
+    transform: translateX(-50%); /* Adjust for centering */
+    width: auto; /* Adjust width as needed */
+    padding: 10px;
+    background-color: #dc3545;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    z-index: 1000; /* Ensure it's above other content */
+}
+
+#html5-qrcode-select-camera {
+    display: none;
+}

@@ -3,6 +3,8 @@
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PegawaiDataController;
 use App\Http\Controllers\PresensiController;
+use App\Http\Controllers\TicketAdminController;
+use App\Http\Controllers\TicketController;
 use App\Http\Middleware\Pegawai;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedController;
@@ -41,16 +43,27 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('/data/edit/{pegawai_id}', [PegawaiDataController::class, 'store'])->name('data.update');
         Route::delete('/data/{pegawai_id}', [PegawaiDataController::class, 'destroy'])->name('data.hapus');
         Route::post('/data/import', [PegawaiDataController::class, 'import'])->name('data.import');
+        //ticket
+        Route::get('/ticket', [TicketAdminController::class, 'index'])->name('ticket.admin');
+        Route::put('/ticket/close/{ticket_id}', [TicketAdminController::class, 'closeTicket'])->name('ticket.close');
+        Route::get('/ticket/open/{ticket_id}', [TicketAdminController::class, 'openTicket'])->name('ticket.open');
+        Route::get('/ticket/solve/{ticket_id}', [TicketAdminController::class, 'solveTicket'])->name('ticket.solve');
+        Route::delete('/ticket/delete/{ticket_id}', [TicketAdminController::class, 'destroy'])->name('ticket.delete');
     });
 
     Route::group(['middleware' => 'pegawai', 'prefix' => 'pegawai'], function () {
+        //dashboard
         Route::get('/', function () {
             return view('pegawai.app');
         })->name('pegawai');
+        //scan qr
         Route::get('/scan', function () {
             return view('pegawai.scan.app');
         })->name('scan');
         Route::post('/absen/{token}', [QrCodeController::class, 'store'])->name('absen');
+        //open ticket
+        Route::get('/ticket', [TicketController::class, 'index'])->name('ticket');
+        Route::post('/ticket', [TicketController::class, 'store']);
     });
 
     Route::get('/chat', function () {

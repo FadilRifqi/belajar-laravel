@@ -1,5 +1,5 @@
 import "./bootstrap";
-import { Html5QrcodeScanner } from "html5-qrcode";
+import { Html5QrcodeScanner, Html5QrcodeScanType } from "html5-qrcode";
 
 document.addEventListener("DOMContentLoaded", function () {
     function onScanSuccess(qrCodeMessage) {
@@ -29,7 +29,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let html5QrcodeScanner = new Html5QrcodeScanner("reader", {
         fps: 1,
-        qrbox: 250,
+        qrbox: 300,
+        facingMode: "environment",
+        supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
     });
     html5QrcodeScanner.render(onScanSuccess, onScanError);
 });

@@ -27,6 +27,7 @@
 		<link rel="stylesheet" href="{{ asset("assets/plugins/daterangepicker/daterangepicker.css") }}">
 		<!-- summernote -->
 		<link rel="stylesheet" href="{{ asset("assets/plugins/summernote/summernote-bs4.min.css") }}">
+		@vite("resources/css/layout.css")
 		@yield("head")
 	</head>
 
@@ -68,7 +69,7 @@
 							</div><!-- /.col -->
 							<div class="col-sm-6">
 								<ol class="breadcrumb float-sm-right">
-									<li class="breadcrumb-item"><a href="{{ route("admin") }}">Home</a></li>
+									<li class="breadcrumb-item"><a class="text-red" href="{{ route("logout") }}">Logout</a></li>
 									<li class="breadcrumb-item active">@yield("page")</li>
 								</ol>
 							</div><!-- /.col -->
@@ -87,11 +88,8 @@
 			</div>
 			<!-- /.content-wrapper -->
 			<footer class="main-footer">
-				<strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+				<strong>Copyright &copy; 2014-2021 <a href="https://github.com/FadilRifqi" target="_blank">Khebab</a>.</strong>
 				All rights reserved.
-				<div class="float-right d-none d-sm-inline-block">
-					<b>Version</b> 3.2.0
-				</div>
 			</footer>
 
 			<!-- Control Sidebar -->
