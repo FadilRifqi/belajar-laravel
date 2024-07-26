@@ -2,12 +2,13 @@
 	@section("title", auth()->user()->divisi->nama)
 
 	@section("head")
-
+		@vite("resources/js/app.js")
 	@endsection
 
 	@section("page", "Chat")
 
-	@section("content")
-		<p>{{ $message }}</p>
-	@endsection
+	<div>
+		<input type="text" wire:model='message'>
+		<button wire:click.prevent='makeNewMessage'>{{ $message }}</button>
+	</div>
 </div>

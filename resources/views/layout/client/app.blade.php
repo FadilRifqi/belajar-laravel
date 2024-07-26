@@ -28,12 +28,13 @@
 		<!-- summernote -->
 		<link rel="stylesheet" href="{{ asset("assets/plugins/summernote/summernote-bs4.min.css") }}">
 		@vite("resources/css/layout.css")
+		@vite("resources/js/app.js")
+		@livewireStyles
 		@yield("head")
 	</head>
 
 	<body class="hold-transition sidebar-mini layout-fixed">
 		<div class="wrapper">
-
 			<!-- Preloader -->
 			<div class="preloader flex-column justify-content-center align-items-center">
 				<img class="animation__shake" src="{{ asset("assets/dist/img/AdminLTELogo.png") }}" alt="AdminLTELogo"
@@ -130,7 +131,8 @@
 		<script src="{{ asset("assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js") }}"></script>
 		<!-- AdminLTE App -->
 		<script src="{{ asset("assets/dist/js/adminlte.js") }}"></script>
-		{{-- script js bootstrap 5 --}}
+		<!-- Livewire Scripts -->
+		@livewireScripts
 		@yield("script")
 	</body>
 

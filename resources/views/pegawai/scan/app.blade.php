@@ -1,7 +1,7 @@
 @extends("layout.client.app")
 
 @section("head")
-	@vite("resources/js/app.js")
+	@vite("resources/js/scan.js")
 	@vite("resources/css/scan.css")
 @endsection
 
