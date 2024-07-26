@@ -6,6 +6,7 @@ use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\TicketAdminController;
 use App\Http\Controllers\TicketController;
 use App\Http\Middleware\Pegawai;
+use App\Livewire\Chat;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedController;
 use App\Http\Controllers\QrCodeController;
@@ -66,11 +67,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/ticket', [TicketController::class, 'store']);
     });
 
-    Route::get('/chat', function () {
-        return response()->json([
-            'message' => 'Chat feature is under development'
-        ]);
-    })->name('chat');
+    Route::get('/chat', Chat::class)->name('chat');
     Route::get('logout', [AuthenticatedController::class, 'destroy'])->name('logout');
     Route::post('/logout', [AuthenticatedController::class, 'destroy']);
 });
