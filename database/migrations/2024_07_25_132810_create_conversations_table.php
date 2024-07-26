@@ -12,8 +12,7 @@ return new class extends Migration {
     {
         Schema::create('conversations', function (Blueprint $table) {
             $table->id();
-            $table->string('nama')->nullable();
-            $table->enum('type', ['direct', 'group'])->default('direct');
+            $table->string('nama')->unique();
             $table->timestamps();
         });
     }

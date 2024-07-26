@@ -1,3 +1,10 @@
+<?php
+use App\Models\Conversation;
+$conversations = Conversation::where("nama", auth()->user()->divisi->nama)->firstOrCreate([
+    "nama" => auth()->user()->divisi->nama,
+]);
+?>
+
 <div class="sidebar">
 	<!-- Sidebar user panel (optional) -->
 	<div class="user-panel mt-3 pb-3 mb-3 d-flex">
@@ -25,7 +32,7 @@
 	<nav class="mt-2">
 		<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 			<!-- Add icons to the links using the .nav-icon class						with font-awesome or any other icon font library -->
-			<li class="nav-item">
+			<li class="nav-item {{ in_array(Route::currentRouteName(), ["chat"]) ? "menu-open" : "" }}">
 				<a href="" class="nav-link">
 					<i class="far fa-comment-dots nav-icon"></i>
 					<p>Chat
@@ -34,9 +41,10 @@
 				</a>
 				<ul class="nav nav-treeview">
 					<li class="nav-item">
-						<a href="{{ route("chat") }}" class="nav-link {{ Route::currentRouteName() == "chat" ? "active" : "" }}">
+						<a href="{{ route("chat", ["divisi_name" => auth()->user()->divisi->nama]) }}"
+							class="nav-link {{ Route::currentRouteName() == "chat" ? "active" : "" }}">
 							<i class="far fa-comment-dots nav-icon"></i>
-							<p>Chat</p>
+							<p>{{ auth()->user()->divisi->nama }}</p>
 						</a>
 					</li>
 				</ul>

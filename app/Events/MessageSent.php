@@ -18,14 +18,10 @@ class MessageSent implements ShouldBroadcastNow
     /**
      * Create a new event instance.
      */
-    public $sender;
-    public $receiver;
-    public $message;
-    public function __construct($sender, $message, $receiver)
+    public $conversation_id;
+    public function __construct($conversation_id)
     {
-        $this->sender = $sender;
-        $this->receiver = $receiver;
-        $this->message = $message;
+        $this->conversation_id = $conversation_id;
     }
 
     /**
@@ -35,7 +31,7 @@ class MessageSent implements ShouldBroadcastNow
      */
     public function broadcastOn(): Channel
     {
-        return new Channel('chat.' . $this->receiver->id);
+        return new Channel('chat.' . $this->conversation_id);
     }
     public function broadcastAs()
     {

@@ -67,7 +67,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/ticket', [TicketController::class, 'store']);
     });
 
-    Route::get('/chat', Chat::class)->name('chat');
+    Route::get('/chat/{divisi_name}', Chat::class)->name('chat');
     Route::get('logout', [AuthenticatedController::class, 'destroy'])->name('logout');
     Route::post('/logout', [AuthenticatedController::class, 'destroy']);
 });
