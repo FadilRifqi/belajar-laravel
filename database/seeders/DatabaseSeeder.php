@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             DivisiSeeder::class,
             TicketStatusSeeder::class,
+            ConversationSeeder::class,
+            ConversationUserSeeder::class,
         ]);
     }
 }

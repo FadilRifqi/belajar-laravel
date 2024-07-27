@@ -5,7 +5,6 @@ use App\Http\Controllers\PegawaiDataController;
 use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\TicketAdminController;
 use App\Http\Controllers\TicketController;
-use App\Http\Middleware\Pegawai;
 use App\Livewire\Chat;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedController;
@@ -67,7 +66,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/ticket', [TicketController::class, 'store']);
     });
 
-    Route::get('/chat/{divisi_name}', Chat::class)->name('chat');
+    Route::get('/chat', Chat::class)->name('chat');
     Route::get('logout', [AuthenticatedController::class, 'destroy'])->name('logout');
     Route::post('/logout', [AuthenticatedController::class, 'destroy']);
 });
