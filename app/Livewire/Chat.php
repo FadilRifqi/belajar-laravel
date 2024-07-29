@@ -7,12 +7,12 @@ use App\Models\Conversation;
 use App\Models\ConversationUser;
 use App\Models\Message;
 use App\Models\User;
-use Carbon\Carbon;
-use Livewire\Attributes\On;
+use Livewire\WithFileUploads;
 use Livewire\Component;
 
 class Chat extends Component
 {
+    use WithFileUploads;
     public $messages = [];
     public $user = null;
     public $users = [];
@@ -21,6 +21,9 @@ class Chat extends Component
     public $conversation_users = null;
     public $conversation = null;
     public $conversation_active = null;
+    public $file = null;
+    public $imageExtensions = ["jpg", "jpeg", "png", "gif", "webp", "bmp", "svg"];
+
 
     public function mount()
     {
@@ -48,10 +51,16 @@ class Chat extends Component
     public function makeNewMessage()
     {
         try {
-            if ($this->body == '') {
+            if ($this->body == '' && $this->file == null) {
                 return;
             }
-            //TODO: change conversation name dynamically
+
+            $filePath = null;
+
+            if ($this->file) {
+                $this->file->store('public');
+                $filePath = $this->file->hashName();
+            }
 
             $conversation_user = ConversationUser::firstOrCreate([
                 'conversation_id' => $this->conversation->id,
@@ -60,9 +69,11 @@ class Chat extends Component
             $message = Message::create([
                 'user_id' => $this->user->id,
                 'conversation_id' => $this->conversation->id,
-                'body' => $this->body
+                'body' => $this->body,
+                'file_path' => $filePath,
             ]);
             $this->body = "";
+            $this->file = null;
             $this->messages = Message::where('conversation_id', $this->conversation->id)->get();
             MessageSent::dispatch($this->conversation->id);
         } catch (\Throwable $th) {
@@ -95,6 +106,11 @@ class Chat extends Component
         ]);
         $this->conversation_users = ConversationUser::where('user_id', $this->user->id)->get();
         $this->conversation = $conversation;
+    }
+
+    public function removeFile()
+    {
+        $this->file = null;
     }
     public function render()
     {

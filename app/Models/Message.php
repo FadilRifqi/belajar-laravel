@@ -17,7 +17,8 @@ class Message extends Model
     protected $fillable = [
         'user_id',
         'conversation_id',
-        'body'
+        'body',
+        'file_path',
     ];
 
     /**
