@@ -2,13 +2,25 @@
 
 @section("title", "Admin")
 @section("head")
+	<style>
+		.chartContainer {
+			width: 100%;
+			/* Adjust this height as needed */
+			position: relative;
+			/* Optional: helps in controlling positioning */
+		}
 
+		#myPieChart {
+			width: 100%;
+			height: 100%;
+		}
+	</style>
 @endsection
 
 @section("page", "Dashboard")
 
 @section("content")
-	<div class="container">
+	<div class="chartContainer">
 		<h2>Data Presensi Pegawai</h2>
 		<canvas id="myPieChart"></canvas>
 	</div>
