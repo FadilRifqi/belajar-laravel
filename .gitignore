@@ -21,3 +21,4 @@ yarn-error.log
 /public/assets/plugins
 /public/assets/build
 /public/assets/dist
+package-lock.json
