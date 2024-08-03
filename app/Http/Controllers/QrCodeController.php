@@ -29,7 +29,7 @@ class QrCodeController extends Controller
                 PresensiPegawai::create([
                     'pegawai_id' => $p->id,
                     'qr_code_id' => $qr_code->id,
-                    'tanggal_presensi' => now(),
+                    'tanggal_presensi' => now()->toDateString(),
                     'presensi' => false,
                 ]);
             }

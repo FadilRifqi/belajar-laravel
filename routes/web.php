@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PegawaiDataController;
 use App\Http\Controllers\PresensiController;
@@ -24,9 +25,7 @@ Route::group(['middleware' => 'guest'], function () {
 Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['middleware' => 'admin', "prefix" => 'admin'], function () {
-        Route::get('/', function () {
-            return view('admin.app');
-        })->name('admin');
+        Route::get('/', [AdminController::class, "dashboard"])->name('admin');
         Route::get('/generate-qrcode', [QrCodeController::class, 'create'])->name('generate');
         //Route Presensi Controller
         Route::post('/export/pegawai', [PegawaiController::class, 'export'])->name('export');
