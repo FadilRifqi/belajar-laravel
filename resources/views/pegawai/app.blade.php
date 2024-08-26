@@ -13,3 +13,10 @@
 		<h1>Dashboard</h1>
 	</div>
 @endsection
+
+@section("script")
+	<script>
+		var presensi = @json($presensi)
+		console.log(presensi);
+	</script>
+@endsection

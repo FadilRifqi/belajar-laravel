@@ -52,9 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['middleware' => 'pegawai', 'prefix' => 'pegawai'], function () {
         //dashboard
-        Route::get('/', function () {
-            return view('pegawai.app');
-        })->name('pegawai');
+        Route::get('/', [PegawaiController::class, 'dashboard'])->name('pegawai');
         //scan qr
         Route::get('/scan', function () {
             return view('pegawai.scan.app');

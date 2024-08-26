@@ -9,6 +9,11 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class PegawaiController extends Controller
 {
+    public function dashboard()
+    {
+        $presensi = auth()->user()->presensi;
+        return view("pegawai.app", compact("presensi"));
+    }
     public function index(Request $request)
     {
         $pegawai = User::where('role_id', 2)->orderBy('divisi_id')->paginate(10);

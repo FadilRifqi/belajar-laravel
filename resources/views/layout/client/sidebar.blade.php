@@ -28,6 +28,18 @@
 			<li class="nav-item menu-open">
 				<ul class="nav nav-treeview">
 					<li class="nav-item">
+						<a href="{{ route(strtolower(auth()->user()->role->name)) }}"
+							class="nav-link {{ Route::currentRouteName() == strtolower(auth()->user()->role->name) ? "active" : "" }}">
+							<i class="fa fa-home nav-icon"></i>
+							<p> Dashboard</p>
+						</a>
+					</li>
+				</ul>
+			</li>
+			<!-- Add icons to the links using the .nav-icon class						with font-awesome or any other icon font library -->
+			<li class="nav-item menu-open">
+				<ul class="nav nav-treeview">
+					<li class="nav-item">
 						<a href="{{ route("chat") }}" class="nav-link {{ Route::currentRouteName() == "chat" ? "active" : "" }}">
 							<i class="far fa-comment-dots nav-icon"></i>
 							<p>Chat</p>
